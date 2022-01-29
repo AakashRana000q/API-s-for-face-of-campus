@@ -53,16 +53,19 @@ def predict():
                 cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
                 cv2.putText(image, name, (x, y), cv2.FONT_HERSHEY_SIMPLEX,
                             0.75, (0, 255, 0), 2)"""
+
     fin_name=max(set(names),key=names.count)
     index=data1["name"].index(fin_name)
     place=data1["place"][index]
     branch=data1["branch"][index]
+    year=data1['year'][index]
+    studying=data1['studying'][index]
     img = data1["image"][index]
     rawBytes = io.BytesIO()
     img.save(rawBytes, "JPEG")
     rawBytes.seek(0)
     img_base64 = base64.b64encode(rawBytes.read())
-    result={'name':fin_name,'place':place,'branch':branch,'image':str(img_base64)}
+    result={'name':fin_name,'place':place,'branch':branch,'image':str(img_base64),'year':year}
 
     return jsonify(result)
 
