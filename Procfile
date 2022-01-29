@@ -1,1 +1,1 @@
-web: python facereco.py
+web: gunicorn facereco:app
